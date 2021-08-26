@@ -4,19 +4,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    Main main = new Main();
-    private ArrayList<String> moviesList = new ArrayList<String>();
-   private String guessedLetters =  new String() ;
-    private String wrongGuessedLetters =  new String() ;
-
     private Scanner letterScanner = new Scanner(System.in);
-
+    private ArrayList<String> moviesList = new ArrayList<String>();
+    private String guessedLetters =  new String() ;
+    private String wrongGuessedLetters =  new String() ;
     private String pickedMovie;
-
     private int listSize = 0;
     private int index = 0;
     public int Points = 9;
     private String space = new String();
+
     public void inputFromFile()
     {
 
@@ -47,20 +44,14 @@ public class Game {
 
     public void randomMoviePickup(){
         pickedMovie = moviesList.get(index);
-       
-        //System.out.println(movie.charAt(0));
     }
 
     public void guessTheMovieOutput() {
 
-        System.out.println();
-        System.out.print("You are guessing: ");
-
-
-         space += " ";
-
-
+        space += " ";
         Points = 9;
+
+        System.out.print("You are guessing: ");
 
         for (int i = 0; i < pickedMovie.length(); i++) {
 
@@ -80,11 +71,11 @@ public class Game {
             else System.out.print("_");
         }
 
-        for(int j=0 ; j< guessedLetters.length() ; j++) {
+        for(int j = 0 ; j < guessedLetters.length() ; j++) {
 
             boolean guessedRight = false;
 
-            for (int i = 0; i < pickedMovie.length(); i++) {
+            for (int i = 0;i < pickedMovie.length(); i++) {
 
 
                 if (pickedMovie.charAt(i) == guessedLetters.charAt(j)) {
@@ -105,12 +96,13 @@ public class Game {
 
 
 
-    public void remainingPointsOutput(){
+    public void wrongGuessedLetterssOutput(){
 
         System.out.println();
         System.out.print("You have guessed (" + guessedLetters.length() + ") ");
         System.out.print("Wrong letters: ");
-        for( int i = 0 ; i<wrongGuessedLetters.length() ; i++){
+
+        for( int i = 0; i < wrongGuessedLetters.length(); i++){
 
             System.out.print(" " + wrongGuessedLetters.charAt(i));
         }
@@ -120,15 +112,19 @@ public class Game {
     }
 
     public void letterInput(){
+
         System.out.println();
         System.out.print("Guess a letter: ");
+
         String guessedLetter = letterScanner.nextLine();
         guessedLetters = guessedLetters + guessedLetter;
     }
 
     public void winAndLose(){
+
         space += " ";
-        int dash=0;
+        int dash = 0;
+
         for (int i = 0; i < pickedMovie.length(); i++) {
 
             boolean guessedRight = false;
@@ -140,14 +136,13 @@ public class Game {
                 }
 
             }
+
             if(this.pickedMovie.charAt(i) == space.charAt(0)) guessedRight = true;
-
-
-
 
             if(!guessedRight) dash ++;
         }
-        if(dash == 0 ) {
+
+        if(dash == 0) {
             System.out.println();
             System.out.print("You win!");
             System.out.println();
